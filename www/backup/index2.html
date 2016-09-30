@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html lang="en">
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"> -->
+        <meta charset="utf-8">
+       <!-- <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no"> -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+		<link rel="stylesheet" type="text/css" href="css/classic-theme.css">
+
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.css">
+		<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/overwrite.css">
+		<!-- <link rel="stylesheet" type="text/css" href="css/inde.css"> -->
+		<!-- <script type="text/javascript" src="cordova.js"></script> -->
+        <script type="text/javascript" src="js/index.js"></script>
+
+
+        <title>My app</title>
+    </head>
+    <body>
+    <script type="text/javascript">
+   		function getsemester(sem)
+   			{
+   				localStorage.semester=sem;
+   			}
+   		function getbranch(br)
+   			{
+   				localStorage.branch=br;
+   			}
+   		var branches=['C.S','I.T','E.C','MECHANICAL','CIVIL'];
+   		
+   		var cssubjects=[/* 1 sem */'M-1','Physics','C.E.D','F.C.S.E','F.E.E',/* 2 sem */'M-2','Chemistry','English','E.G','D.S',/* 3 sem */'M-2','M-4','D.C.S','E.D.C','Data Structures',/* 4 sem */'M-3','C.S.O','O.O.T','Analysis&Design of Algo','A.D.C',/* 5 sem */'Data Comm.','O.S','D.B.M.S','Computer Graphics & Multimedia','T.O.C',/* 6 sem */'Micro-processor&Interfacing','P.P.L','Software Engg. & Project Management','Computer Networking','A.C.A',/* 7 sem */'Compiler Design','Disitributed System','Cloud Computing','I.S.M','Elective-I',/* 8 sem */'Soft Computing','Web Engg.','Elective-III','Elective-IV'];
+   		
+   		var itsubjects=[/* 1 sem */'M-1','Physics','C.E.D','F.C.S.E','F.E.E',/*2 sem */'M-2','Chemistry','English','E.G','D.S',/* 3 sem */'M-2','M-4','O.O.P.S','E.D.C','Data Structures',/* 4 sem */'M-3','C.S.O','D.B.M.S','Analysis&Design of Algo','A.D.C',/* 5 sem */'Data Comm.','I.S.M','Computer Networks','System Programming & O.S.','Java Programming',/* 6 sem */'Unix & Shell Programming','Computer Graphics & Multimedia','Internet Technology & Network Management','Web Technology','Software Engg. & Project Management',/* 7 sem */'Object Oriented Analysis','Wireless&Mobile Computing','Cloud Computing','Elective-I','Elective-II',/* 8 sem */'Information Security','Soft Computing','Elective-III','Elective-IV',];
+
+   		var ecsubjects=[/* 1 sem */'M-1','Physics','C.E.D','F.C.S.E','F.E.E',/* 2 sem */'M-2','Chemistry','English','E.G','D.S',/* 3 sem */'M-2','C.S.O','E.I','Electronic Devices','Network Analysis',/* 4 sem */'M-3','Electromagnetic Theory','Digital Electronics','L.I.C','Analog Comm.',/* 5 sem */'Voice&Data Comm.','Control Systems','Digital Comm.','Microprocessors & Microcontrollers','Communication Networks & Transmission Lines',/* 6 sem */'Industrial Electronics','Cellular Mobile Comm.','D.S.P','A&W Propogation','VLSI Circuits&Systems',/* 7 sem */'Elective-I','Satellite Comm.','Optical Comm.','Microwave Engg.','VLSI Design',/* 8 sem */'Elective-II','Advanced Comm. System','Computer Networks','TV & Radar Engg.'];
+
+   		var mesubjects=[/* 1 sem */'M-1','Physics','C.E.D','F.C.S.E','F.E.E',/* 2 sem */'M-2','Chemistry','English','E.G','D.S',/* 3 sem */'M-2','Production Process','S.O.M','Thermodynamics','M.D.D',/* 4 sem */'M-3','Material Sience & Metallurgy','Theory of M/C & Mechanism','Thermal Engg & Gas Dynamics','Fluid Dynamics',/* 5 sem */'Entrepreneurship&Management','Turbo Machinery','Mechanical Measurement & Control','Machine Component & Design','Dynamics of Machines',/* 6 sem */'Operations Management','Powerplant Engg.','Metal Cutting & CNC Machines','IC Engines','Heat&Mass Transfer',/* 7 sem */'Elective-I','Elective-II','Mechanical Vibration & Noise Engg.','Automobil Engg.','O R & Supply chain',/* 8 sem */'Elective-III','Machine Design','Refrigeration & A.C','CAD/CAM/CIM'];
+
+   		var civilsubjects=[/* 1 sem */'M-1','Physics','C.E.D','F.C.S.E','F.E.E',/* 2 sem */'M-2','Chemistry','English','E.G','D.S',/* 3 sem */'M-2','TBT','SOM','Engg. Geology','B.D.D',/* 4 sem */'M-3','Concrete Technology','Surveying','CMT','Fluid Mechanics',/* 5 sem */'Transportation Engg.','Advanced Surveying','Fluid Mech-II','Structural Design & Drawing-I','Theory Of Structures',/* 6 sem */'Theory Of Structures-II','Water Resources & Irrigation Engg.','Environmental Engg-I','Geo Tech Engg.-I','Structural Design & Drawing-II',/* 	 7 sem */'Design of Hydraulic Structure','Advanced Structural Design-II','Environmental Engg.-II','Quantity Surveying & Costing','Elective-I',/* 8 sem */'GeoTechnicl Engg.-II','Construction Planning & Management','Advanced Structural Design-II','Elective-II'];
+
+   		var cssem3=[/* M2 5 */'Advanced Engg. Mathematics by Erwin Kreyszig, Wiley India','Higher Engg. Mathematics by BS Grewal, Khanna Publication','Advanced Engg. Mathematics by D.G.Guffy','Mathematics for Engg. by S.Arumungum','Engg. Mathematics by S S Sastri, P.H.I','','',/* M4 7 */'C.L.Liu Elements of discrete Mathematics','Trembley,J.P & Manohar Discrete Mathematical structure with applications','Discrete Mathematics by Kenneth H. Rosen','Lipschultz:Discrete Mathematics(Schaum)','Deo,Narsingh Graph theory with application','Krishnamurthy V: "Combinatorics theory & application"','Discrete Mathematics by SK Sarkar',/* DCS 7 */'M. Mano "Digital logic & Computer Design"','Malvino & Leach: "Digital principles & applications"','W.H Gothman: "Digital Electronics"','Millman & Taub: "Pulse Digital & Switching Waveforms"','Jain RP: Modern Digital Electronics','R.J Tocci: "Digital system principles & applications"','A.Anand Kumar "Fundamentals of Digital Circuits"',/* EDC 6 */'Milliman Halkias-Integrated Electronics','Gayakwad:OP-amp & linear integrated circuits','Salivahanan:EDC','Salivahanan:LIC','Milliman Grabel:Micro Electronics','RobertBoylestad & Nashetsky:EDC theory','',/* DS 7 */'R.Kruse et al:Data Structure & program design in C','ISRD Group:Data Structure using C','Lipschutz:Data Structure(Schaum)','Horowitz & Sahani:"Fundamentals of Data Structures"','M Tenenbaum:Data Structures using C & C++','Trembley & Sorenson:Data Structures','Pai:Data Structure & Algorithm','Introduction to algorithm-Corman'];
+
+   		
+   		function ref()
+   			{
+   				if(localStorage.semester==3 && localStorage.branch==1)
+   				{  var i=
+   					document.getElementById("refer1").innerHTML=cssem3[7*(localStorage.subject-5*(localStorage.semester-1))];
+   					document.getElementById("refer2").innerHTML=cssem3[7*(localStorage.subject-5*(localStorage.semester-1))+1];
+   					document.getElementById("refer3").innerHTML=cssem3[7*(localStorage.subject-5*(localStorage.semester-1))+2];
+   					document.getElementById("refer4").innerHTML=cssem3[7*(localStorage.subject-5*(localStorage.semester-1))+3];
+   					document.getElementById("refer5").innerHTML=cssem3[7*(localStorage.subject-5*(localStorage.semester-1))+4];
+   					document.getElementById("refer6").innerHTML=cssem3[7*(localStorage.subject-5*(localStorage.semester-1))+5];
+   					document.getElementById("refer7").innerHTML=cssem3[7*(localStorage.subject-5*(localStorage.semester-1))+6];
+   				}
+   			}
+
+   		function display()
+   			{
+   				document.getElementById("subject").innerHTML="Displaying subjects of "+branches[parseInt(localStorage.branch)-1]+" branch "+" Semester "+parseInt(localStorage.semester);
+   			}
+   		function display2()
+   			{
+   				document.getElementById("write").innerHTML=branches[parseInt(localStorage.branch)-1]+" branch "+" semester "+parseInt(localStorage.semester);
+   			}
+   		function abc(br)
+   			{
+   				getbranch(br);
+   				/*display();*/
+   				display2();
+   				sem();
+   			}
+   		function sem()
+   			{	var i;
+   				i=5*(localStorage.semester-1);
+   				if(localStorage.branch==1)
+	   				{	document.getElementById("1").innerHTML=cssubjects[i];
+	   					document.getElementById("2").innerHTML=cssubjects[i+1];
+	   					document.getElementById("3").innerHTML=cssubjects[i+2];
+	   					document.getElementById("4").innerHTML=cssubjects[i+3];
+	   					document.getElementById("5").innerHTML=cssubjects[i+4];
+					}
+				else if(localStorage.branch==2)
+	   				{	document.getElementById("1").innerHTML=itsubjects[i];
+	   					document.getElementById("2").innerHTML=itsubjects[i+1];
+	   					document.getElementById("3").innerHTML=itsubjects[i+2];
+	   					document.getElementById("4").innerHTML=itsubjects[i+3];
+	   					document.getElementById("5").innerHTML=itsubjects[i+4];
+					}
+				else if(localStorage.branch==3)
+	   				{	document.getElementById("1").innerHTML=ecsubjects[i];
+	   					document.getElementById("2").innerHTML=ecsubjects[i+1];
+	   					document.getElementById("3").innerHTML=ecsubjects[i+2];
+	   					document.getElementById("4").innerHTML=ecsubjects[i+3];
+	   					document.getElementById("5").innerHTML=ecsubjects[i+4];
+					}
+				else if(localStorage.branch==4)
+	   				{	document.getElementById("1").innerHTML=mesubjects[i];
+	   					document.getElementById("2").innerHTML=mesubjects[i+1];
+	   					document.getElementById("3").innerHTML=mesubjects[i+2];
+	   					document.getElementById("4").innerHTML=mesubjects[i+3];
+	   					document.getElementById("5").innerHTML=mesubjects[i+4];
+					}
+				else if(localStorage.branch==5)
+	   				{	document.getElementById("1").innerHTML=civilsubjects[i];
+	   					document.getElementById("2").innerHTML=civilsubjects[i+1];
+	   					document.getElementById("3").innerHTML=civilsubjects[i+2];
+	   					document.getElementById("4").innerHTML=civilsubjects[i+3];
+	   					document.getElementById("5").innerHTML=civilsubjects[i+4];
+					}
+
+
+			}
+
+
+		function getsubject(sub)
+			{ // add if statements
+				localStorage.subject=sub;
+				diskitaab();
+				ref();
+			}
+		function diskitaab(br)
+			{   if(localStorage.branch==1)
+				{	document.getElementById("kitaab").innerHTML="You chose "+branches[localStorage.branch-1]+" branch "+" semester "+localStorage.semester+" subject "+cssubjects[localStorage.subject];
+					document.getElementById("sub").innerHTML=cssubjects[localStorage.subject];
+				}
+				else if(localStorage.branch==2)
+				{	document.getElementById("kitaab").innerHTML="You chose "+branches[localStorage.branch-1]+" branch "+" semester "+localStorage.semester+" subject "+itsubjects[localStorage.subject];
+					document.getElementById("sub").innerHTML=itsubjects[localStorage.subject];
+				}
+				else if(localStorage.branch==3)
+				{	document.getElementById("kitaab").innerHTML="You chose "+branches[localStorage.branch-1]+" branch "+" semester "+localStorage.semester+" subject "+ecsubjects[localStorage.subject];
+					document.getElementById("sub").innerHTML=ecsubjects[localStorage.subject];
+				}
+				else if(localStorage.branch==4)
+				{	document.getElementById("kitaab").innerHTML="You chose "+branches[localStorage.branch-1]+" branch "+" semester "+localStorage.semester+" subject "+mesubjects[localStorage.subject];
+					document.getElementById("sub").innerHTML=mesubjects[localStorage.subject];
+				}
+				else if(localStorage.branch==5)
+				{	document.getElementById("kitaab").innerHTML="You chose "+branches[localStorage.branch-1]+" branch "+" semester "+localStorage.semester+" subject "+civilsubjects[localStorage.subject];
+					document.getElementById("sub").innerHTML=civilsubjects[localStorage.subject];
+				}
+			}
+
+
+    </script>
+
+
+
+
+
+
+    	<div id="home" data-role="page" data-title="Home" data-theme="b">
+    
+	    	<div data-role="header" data-id="head" data-position="fixed" class="header">
+	    		<h3>Home</h3>
+	    	</div><!-- header -->
+	    	
+	    	<div data-role="content" data-theme="b">
+	    	<a href="#course" data-role="button" data-icon="carat-r" data-iconpos="right" data-transition="pop">Search For Books</a>
+	    	</div><!-- content -->
+
+	    	<div data-role="footer" data-id="foot" data-position="fixed" data-theme="b">
+	    		<div data-role="navbar">
+	    			<ul>
+	    				<li><a href="#" data-icon="home" iconpos="notext"></a></li>
+	    				<li><a href="#" data-icon="gear" iconpos="notext"></a></li>
+	    			</ul>
+	    		</div>
+	    	</div><!-- footer -->
+    	
+    	</div><!-- home -->
+
+    	<div id="course" data-role="page" data-title="course" data-theme="b">
+		
+			<div data-role="header" data-id="head" data-position="fixed"> 
+	    		<a href="#home" data-role="button" data-icon="home" data-iconpos="notext" data-transition="flip"></a>
+	    		<h3>Select Course</h3>
+	    		<a href="#home" data-role="button" data-icon="back" data-iconpos="notext" data-transition="flip"></a>
+	    	</div><!-- header -->
+	    	
+	    	<div data-role="content">
+	    		<a href="#year" data-role="button" data-transition="fade">Engg.</a>
+	    		<a href="#" data-role="button" data-transition="fade">B.Com</a>
+	    		<a href="#" data-role="button" data-transition="fade">BCA</a>
+	    		<a href="#" data-role="button" data-transition="fade">MCA</a>
+	    	</div><!-- content -->
+
+	    	<div data-role="footer" data-id="foot" data-position="fixed">
+	    		<div data-role="navbar">
+	    			<ul>
+	    				<li><a href="#" data-icon="home" iconpos="notext"></a></li>
+	    				<li><a href="#" data-icon="gear" iconpos="notext"></a></li>
+	    			</ul>
+	    		</div>
+	    	</div><!-- footer -->
+
+    	</div><!-- course -->
+
+    	<div id="year" data-role="page" data-title="year" data-theme="b">
+
+    		<div data-role="header" data-id="head" data-position="fixed"> 
+    			<a href="#home" data-role="button" data-icon="home" data-iconpos="notext" data-transition="flip"></a>
+	    		<h3>Select year</h3>
+	    		<a href="#course" data-role="button" data-icon="back" data-iconpos="notext" data-transition="flip"></a>
+	    	</div><!-- header -->
+
+	    	<div data-role="content">
+	    		<div data-role="controlgroup">
+		    		<div data-role="collapsibleset">
+			    		<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+			    			<h3>I year</h3>
+			    			<ul data-role="listview" class="pd">
+			    				<li><a href="#branch" data-role="button" data-transition="fade" onclick="getsemester(1)" data-icon="carat-r">I SEM</a></li>
+			    				<li><a href="#branch" data-role="button" data-transition="fade" onclick="getsemester(2)" data-icon="carat-r">II SEM</a></li>
+			    			</ul>
+			    		</div><!-- collapsible -->
+			    		<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+			    			<h3>II year</h3>
+			    			<ul data-role="listview" class="pd">
+			    				<li><a href="#branch" data-role="button" data-transition="fade" onclick="getsemester(3)" data-icon="carat-r">III SEM</a></li>
+			    				<li><a href="#branch" data-role="button" data-transition="fade" onclick="getsemester(4)" data-icon="carat-r">IV SEM</a></li>
+			    			</ul>
+			    		</div><!-- collapsible -->
+			    		<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+			    			<h3>III year</h3>
+			    			<ul data-role="listview" class="pd">
+			    				<li><a href="#branch" data-role="button" data-transition="fade" onclick="getsemester(5)" data-icon="carat-r">V SEM</a></li>
+			    				<li><a href="#branch" data-role="button" data-transition="fade" onclick="getsemester(6)" data-icon="carat-r">VI SEM</a></li>
+			    			</ul>
+			    		</div><!-- collapsible -->
+			    		<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+			    			<h3>IV year</h3>
+			    			<ul data-role="listview" class="pd">
+			    				<li><a href="#branch" data-role="button" data-transition="fade" onclick="getsemester(7)" data-icon="carat-r">VII SEM</a></li>
+			    				<li><a href="#branch" data-role="button" data-transition="fade" onclick="getsemester(8)" data-icon="carat-r">VIII SEM</a></li>
+			    			</ul>
+			    		</div><!-- collapsible -->
+		            </div>
+	            </div><!-- controlgroup -->
+	    	</div><!-- content -->
+
+	    	<div data-role="footer" data-id="foot" data-position="fixed">
+	    		<div data-role="navbar">
+	    			<ul>
+	    				<li><a href="#" data-icon="home" iconpos="notext"></a></li>
+	    				<li><a href="#" data-icon="gear" iconpos="notext"></a></li>
+	    			</ul>
+	    		</div>
+	    	</div><!-- footer -->
+	   
+	    </div><!-- year -->
+
+	    <div id="branch" data-role="page" data-theme="b">
+	    	
+	    	<div data-role="header" data-id="head" data-position="fixed"> 
+    			<a href="#home" data-role="button" data-icon="home" data-iconpos="notext" data-transition="flip"></a>
+	    		<h3>Select Branch</h3>
+	    		<a href="#year" data-role="button" data-icon="back" data-iconpos="notext" data-transition="flip"></a>
+	    	</div><!-- header -->
+
+	    	<div data-role="content">
+		    	<div data-role="controlgroup">
+		    		<ul data-role="listview">
+		    			<li><a href="#subject" data-role="button" data-transition="fade" data-icon="carat-r" onclick="abc(1)">C.S</a></li>
+		    			<li><a href="#subject" data-role="button" data-transition="fade" data-icon="carat-r" onclick="abc(2)">I.T</a></li>
+						<li><a href="#subject" data-role="button" data-transition="fade" data-icon="carat-r" onclick="abc(3)">E.C</a></li>
+		    			<li><a href="#subject" data-role="button" data-transition="fade" data-icon="carat-r" onclick="abc(4)">Mechanical</a></li>
+		    			<li><a href="#subject" data-role="button" data-transition="fade" data-icon="carat-r" onclick="abc(5)">Civil</a></li>
+		    		</ul>
+		    	</div><!-- controlgroup -->
+	    	</div><!-- content -->
+
+	    	<div data-role="footer" data-id="foot" data-position="fixed">
+	    		<div data-role="navbar">
+	    			<ul>
+	    				<li><a href="#" data-icon="home" iconpos="notext"></a></li>
+	    				<li><a href="#" data-icon="gear" iconpos="notext"></a></li>
+	    			</ul>
+	    		</div>
+	    	</div><!-- footer -->
+	    </div><!-- branch -->
+
+	    <div id="subject" data-role="page" data-theme="b">
+
+	    	<div data-role="header" data-id="head" data-position="fixed"> 
+    			<a href="#home" data-role="button" data-icon="home" data-iconpos="notext" data-transition="flip"></a>
+	    		<h3>Select Subject</h3>
+	    		<a href="#branch" data-role="button" data-icon="back" data-iconpos="notext" data-transition="flip"></a>
+	    	</div><!-- header -->
+
+	    	<div data-role="content">
+	    		<h6>Displaying subjects of</h6><h5 id="write"></h5>
+	    		<a href="#books" data-transition="fade" data-role="button" id="1" onclick="getsubject(5*(localStorage.semester-1))"></a>
+	    		<a href="#books" data-transition="fade" data-role="button" id="2" onclick="getsubject(5*(localStorage.semester-1)+1)"></a>
+	    		<a href="#books" data-transition="fade" data-role="button" id="3" onclick="getsubject(5*(localStorage.semester-1)+2)"></a>
+	    		<a href="#books" data-transition="fade" data-role="button" id="4" onclick="getsubject(5*(localStorage.semester-1)+3)"></a>
+	    		<a href="#books" data-transition="fade" data-role="button" id="5" onclick="getsubject(5*(localStorage.semester-1)+4)"></a>
+	    	</div>
+
+	    	<div data-role="footer" data-id="foot" data-position="fixed">
+	    		<div data-role="navbar">
+	    			<ul>
+	    				<li><a href="#" data-icon="home" iconpos="notext"></a></li>
+	    				<li><a href="#" data-icon="gear" iconpos="notext"></a></li>
+	    			</ul>
+	    		</div>
+	    	</div><!-- footer -->
+	    </div><!-- subject -->
+
+	    
+	    	    <!-- ****Books Here***** -->
+
+
+	    <div id="books" data-role="page" data-theme="b">
+
+	    	<div data-role="header" data-id="head" data-position="fixed"> 
+    			<a href="#home" data-role="button" data-icon="home" data-iconpos="notext" data-transition="flip"></a>
+	    		<h3>Reference Books</h3>
+	    		<a href="#subject" data-role="button" data-icon="back" data-iconpos="notext" data-transition="flip"></a>
+	    	</div><!-- header -->
+
+	    	<div data-role="content">
+	    		<div id="kitaab"></div>
+	    		<center><h3 id="sub"></h3></center>
+	    		References:
+	    		<ul>
+	    		<li id="refer1"></li>
+	    		<li id="refer2"></li>
+	    		<li id="refer3"></li>
+	    		<li id="refer4"></li>
+	    		<li id="refer5"></li>
+	    		<li id="refer6"></li>
+	    		<li id="refer7"></li>
+	    		</ul>
+
+	    	</div><!-- content -->
+
+	    	<div data-role="footer" data-id="foot" data-position="fixed">
+	    		<div data-role="navbar">
+	    			<ul>
+	    				<li><a href="#" data-icon="home" iconpos="notext"></a></li>
+	    				<li><a href="#" data-icon="gear" iconpos="notext"></a></li>
+	    			</ul>
+	    		</div>
+	    	</div><!-- footer -->
+	    
+	    </div><!-- books -->
+
+	    <!-- ****Books Here***** -->
+
+	  
+
+	    
+    </body>
+</html>
